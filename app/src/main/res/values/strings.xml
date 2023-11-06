@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Raspored</string>
+    <string name="title_activity_dev">Dev</string>
+    <string name="title_activity_todo">Todo</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_raspored">RasporedActivity</string>
+    <string name="title_activity_debuging">DebugingActivity</string>
+</resources>
