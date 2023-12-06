@@ -1,7 +1,9 @@
 package com.example.raspored
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -23,6 +25,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.dataprocessor.DataProcessor
+import com.example.raspored.elements.RasporedButton
+import com.example.raspored.elements.RasporedTable
+import com.example.raspored.elements.RasporedTableViewModel
 import com.example.raspored.ui.theme.RasporedTheme
 
 val dataProcessor: DataProcessor = DataProcessor()
@@ -32,7 +37,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             RasporedTheme {
-                Homescreen(RasporedElementViewModel())
+                Homescreen(RasporedTableViewModel())
             }
         }
     }
@@ -40,8 +45,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 @OptIn(ExperimentalLayoutApi::class)
-private fun Homescreen(viewModel: RasporedElementViewModel) {
-    val mContext = LocalContext.current
+private fun Homescreen(viewModel: RasporedTableViewModel) {
+    LockScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+    val context = LocalContext.current
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -56,7 +62,7 @@ private fun Homescreen(viewModel: RasporedElementViewModel) {
             modifier = Modifier
                 .padding(bottom = 5.dp)
         )
-        RasporedElement(viewModel)
+        RasporedTable(viewModel)
         FlowRow(
             modifier = Modifier
                 .fillMaxWidth()
@@ -68,17 +74,22 @@ private fun Homescreen(viewModel: RasporedElementViewModel) {
             horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             RasporedButton(
-                onClick = { mContext.startActivity(Intent(mContext, SettingActivity::class.java)) },
+                onClick = {
+//                     CreateIntent(context, SettingActivity(), state)
+//                    val intent = Intent(context, SettingActivity::class.java)
+//                    intent.putExtra("DATABASE_VIEW_MODEL", state.selected.selected.toInt())
+                    context.startActivity(Intent(context, SettingActivity::class.java))
+                },
                 modifier = Modifier.weight(1f),
                 text = "Settings",
             )
             RasporedButton(
-                onClick = { mContext.startActivity(Intent(mContext, Todo::class.java)) },
+                onClick = { context.startActivity(Intent(context, Todo::class.java)) },
                 modifier = Modifier.weight(1f),
                 text = "Todo",
             )
             RasporedButton(
-                onClick = { mContext.startActivity(Intent(mContext, RasporedActivity::class.java)) },
+                onClick = { context.startActivity(Intent(context, RasporedActivity::class.java)) },
                 modifier = Modifier.weight(1f),
                 text = "Debug",
             )
@@ -86,6 +97,7 @@ private fun Homescreen(viewModel: RasporedElementViewModel) {
                 onClick = {
                     dataProcessor.setDay()
                     viewModel.updateGrupaState()
+                    Log.d("REFRESH", dataProcessor.getDay().toString())
                 },
                 modifier = Modifier.weight(1f),
                 text = "Refresh",

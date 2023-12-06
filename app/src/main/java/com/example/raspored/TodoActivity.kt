@@ -1,5 +1,6 @@
 package com.example.raspored
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -32,11 +33,12 @@ class Todo : ComponentActivity() {
     }
 }
 
-val todo: List<String> = listOf("Watch Tile", "Selectable bg color", "Widget with all classes for given day?", "Disable landscape mode", "Fix font not changing properly")
+val todo: List<String> = listOf("Selectable bg color", "Widget with all classes for given day?")
 
 @Preview
 @Composable
 private fun Homescreen() {
+    LockScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
     Column(
         modifier = Modifier
             .fillMaxSize()

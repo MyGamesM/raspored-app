@@ -1,5 +1,6 @@
 package com.example.raspored
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -20,6 +21,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.raspored.elements.RasporedButton
+import com.example.raspored.elements.RasporedTable
+import com.example.raspored.elements.RasporedTableViewModel
 import com.example.raspored.ui.theme.RasporedTheme
 
 class RasporedActivity : ComponentActivity() {
@@ -27,7 +31,7 @@ class RasporedActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             RasporedTheme {
-                Homescreen(RasporedElementViewModel())
+                Homescreen(RasporedTableViewModel())
             }
         }
     }
@@ -37,7 +41,8 @@ val dani: Array<String> = arrayOf("Ponedeljak", "Utorak", "Sreda", "Cetvrtak", "
 
 @Composable
 @OptIn(ExperimentalLayoutApi::class)
-private fun Homescreen(viewModel: RasporedElementViewModel) {
+private fun Homescreen(viewModel: RasporedTableViewModel) {
+    LockScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -51,7 +56,7 @@ private fun Homescreen(viewModel: RasporedElementViewModel) {
             color = Color(0xfffafafa),
             modifier = Modifier.padding(top = 10.dp)
         )
-        RasporedElement(viewModel)
+        RasporedTable(viewModel)
         FlowRow(
             modifier = Modifier
                 .fillMaxWidth()

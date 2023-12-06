@@ -38,9 +38,7 @@ class DataProcessor {
             day -= 2 // probably had to do this because sundays is 0 and index being at 0
             if (day > 4 || day < 0) day = 0
             day
-        } else {
-            day
-        }
+        } else { day }
     }
 
     fun setDay(value: Int = -1) {

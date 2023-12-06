@@ -1,9 +1,12 @@
-package com.example.raspored
+package com.example.raspored.elements
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -26,8 +29,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
+import com.example.raspored.dataProcessor
 
-class RasporedElementViewModel: ViewModel() {
+class RasporedTableViewModel: ViewModel() {
     var grupa by mutableIntStateOf(dataProcessor.grupa)
     var day by mutableIntStateOf(dataProcessor.getDay())
     fun updateGrupaState() { grupa = dataProcessor.grupa }
@@ -35,7 +39,8 @@ class RasporedElementViewModel: ViewModel() {
 }
 
 @Composable
-fun RasporedElement(viewModel: RasporedElementViewModel, modifier: Modifier = Modifier) {
+fun RasporedTable(viewModel: RasporedTableViewModel, modifier: Modifier = Modifier) {
+    val special_classes: Array<String> = arrayOf("Matematika", "Matematika I", "Sociologija", "Programiranje", "Gradjansko")
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -62,8 +67,7 @@ fun RasporedElement(viewModel: RasporedElementViewModel, modifier: Modifier = Mo
                 }
                 item {
                     val text: String = if (it != "g") it else dataProcessor.grupe[viewModel.day][viewModel.grupa][i]
-                    var fontSize: Int by remember { mutableIntStateOf(18) }
-                    var readyToDraw by remember { mutableStateOf(false) }
+                    val fontSize = if (special_classes.contains(text)) 13 else 18
                     Text(
                         text = text,
                         fontSize = fontSize.sp,
@@ -71,16 +75,7 @@ fun RasporedElement(viewModel: RasporedElementViewModel, modifier: Modifier = Mo
                         textAlign = TextAlign.Center,
                         maxLines = 1,
                         softWrap = false,
-                        modifier = Modifier.drawWithContent {
-                            if (readyToDraw) drawContent()
-                        },
-                        onTextLayout = { textLayoutResult: TextLayoutResult ->
-                            if (textLayoutResult.didOverflowWidth) {
-                                fontSize -= 1
-                            } else {
-                                readyToDraw = true
-                            }
-                        }
+                        modifier = Modifier.fillMaxHeight()
                     )
                 }
                 item { Text(
