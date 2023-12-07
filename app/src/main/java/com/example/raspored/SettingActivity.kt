@@ -41,7 +41,7 @@ class SettingActivity : ComponentActivity() {
             applicationContext,
             SelectedDatabase::class.java,
             "selected.db"
-        ).build()
+        ).createFromAsset("database/selected.db").build()
     }
 
     private val viewModel by viewModels<SelectedViewModel>(
