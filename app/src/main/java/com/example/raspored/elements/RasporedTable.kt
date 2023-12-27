@@ -67,7 +67,7 @@ fun RasporedTable(viewModel: RasporedTableViewModel, modifier: Modifier = Modifi
                 }
                 item {
                     val text: String = if (it != "g") it else dataProcessor.grupe[viewModel.day][viewModel.grupa][i]
-                    val fontSize = if (special_classes.contains(text)) 13 else 18
+                    val fontSize = if (special_classes.contains(text)) 12 else 18
                     Text(
                         text = text,
                         fontSize = fontSize.sp,

@@ -45,12 +45,15 @@ class DataProcessor {
         day = if (value == -1) calendar.get(Calendar.DAY_OF_WEEK) else value
     }
 
-    fun getCurrentTime(type: Int = 0, hour: String = "00", minute: String = "00"): Int {
+    private fun getCurrentTime(type: Int = 0, hour: String = "00", minute: String = "00"): Int {
         val currentTime: LocalTime = if (type == 1) LocalTime.parse("$hour:$minute") else LocalTime.now()
+
         if (type == 1) {
             currentHour = hour.toInt()
             currentMinute = minute.toInt()
         }
+
+        if (currentTime.isBefore(LocalTime.parse("06:00")))
 
         startTimeTable.forEach {
             if (currentTime.isBefore(LocalTime.parse(it))) return startTimeTable.indexOf(it)

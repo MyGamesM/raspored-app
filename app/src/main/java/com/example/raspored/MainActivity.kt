@@ -75,23 +75,15 @@ private fun Homescreen(viewModel: RasporedTableViewModel) {
         ) {
             RasporedButton(
                 onClick = {
-//                     CreateIntent(context, SettingActivity(), state)
-//                    val intent = Intent(context, SettingActivity::class.java)
-//                    intent.putExtra("DATABASE_VIEW_MODEL", state.selected.selected.toInt())
                     context.startActivity(Intent(context, SettingActivity::class.java))
                 },
                 modifier = Modifier.weight(1f),
                 text = "Settings",
             )
             RasporedButton(
-                onClick = { context.startActivity(Intent(context, Todo::class.java)) },
-                modifier = Modifier.weight(1f),
-                text = "Todo",
-            )
-            RasporedButton(
                 onClick = { context.startActivity(Intent(context, RasporedActivity::class.java)) },
                 modifier = Modifier.weight(1f),
-                text = "Debug",
+                text = "Raspored",
             )
             RasporedButton(
                 onClick = {
