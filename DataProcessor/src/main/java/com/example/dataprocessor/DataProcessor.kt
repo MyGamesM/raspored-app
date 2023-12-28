@@ -53,7 +53,7 @@ class DataProcessor {
             currentMinute = minute.toInt()
         }
 
-        if (currentTime.isBefore(LocalTime.parse("06:00")))
+        if (currentTime.isBefore(LocalTime.parse("06:00"))) return -1
 
         startTimeTable.forEach {
             if (currentTime.isBefore(LocalTime.parse(it))) return startTimeTable.indexOf(it)

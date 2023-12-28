@@ -17,24 +17,9 @@
             android:label="@string/title_activity_raspored"
             android:theme="@style/Theme.Raspored" />
         <activity
-            android:name=".DebuggingActivity"
-            android:exported="false"
-            android:label="@string/title_activity_debuging"
-            android:theme="@style/Theme.Raspored" />
-        <activity
             android:name=".SettingActivity"
             android:exported="false"
             android:label="@string/title_activity_setting"
-            android:theme="@style/Theme.Raspored" />
-        <activity
-            android:name=".Todo"
-            android:exported="false"
-            android:label="@string/title_activity_todo"
-            android:theme="@style/Theme.Raspored" />
-        <activity
-            android:name=".Dev"
-            android:exported="false"
-            android:label="@string/title_activity_dev"
             android:theme="@style/Theme.Raspored" />
         <activity
             android:name=".MainActivity"
