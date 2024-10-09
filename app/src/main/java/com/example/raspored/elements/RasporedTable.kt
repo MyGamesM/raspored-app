@@ -1,12 +1,10 @@
 package com.example.raspored.elements
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -16,15 +14,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,7 +34,7 @@ class RasporedTableViewModel: ViewModel() {
 
 @Composable
 fun RasporedTable(viewModel: RasporedTableViewModel, modifier: Modifier = Modifier) {
-    val special_classes: Array<String> = arrayOf("Matematika", "Matematika I", "Sociologija", "Programiranje", "Gradjansko")
+    val specialClasses: Array<String> = arrayOf("Matematika", "Matematika I", "Pred A / Verska", "Pred B / Grad", "Programiranje", "Gradjansko")
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -59,6 +53,8 @@ fun RasporedTable(viewModel: RasporedTableViewModel, modifier: Modifier = Modifi
             contentPadding = PaddingValues(all = 10.dp)
         ) {
             dataProcessor.raspored[viewModel.day].forEachIndexed { i, it ->
+                val text: String = if (it != "g") it else dataProcessor.grupe[viewModel.day][viewModel.grupa][i]
+                if (text.isEmpty()) return@forEachIndexed
                 item { Text(
                         text = dataProcessor.startTimeTable[i],
                         color = Color(0xfffafafa),
@@ -66,17 +62,16 @@ fun RasporedTable(viewModel: RasporedTableViewModel, modifier: Modifier = Modifi
                     )
                 }
                 item {
-                    val text: String = if (it != "g") it else dataProcessor.grupe[viewModel.day][viewModel.grupa][i]
-                    val fontSize = if (special_classes.contains(text)) 12 else 18
-                    Text(
-                        text = text,
-                        fontSize = fontSize.sp,
-                        color = Color(0xfffafafa),
-                        textAlign = TextAlign.Center,
-                        maxLines = 1,
-                        softWrap = false,
-                        modifier = Modifier.fillMaxHeight()
-                    )
+                    val fontSize = if (specialClasses.contains(text)) 12 else 18
+                        Text(
+                            text = text,
+                            fontSize = fontSize.sp,
+                            color = Color(0xfffafafa),
+                            textAlign = TextAlign.Center,
+                            maxLines = 1,
+                            softWrap = false,
+                            modifier = Modifier.fillMaxHeight()
+                        )
                 }
                 item { Text(
                         text = dataProcessor.endTimeTable[i],

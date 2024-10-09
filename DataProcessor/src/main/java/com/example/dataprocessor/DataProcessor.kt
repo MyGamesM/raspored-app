@@ -6,19 +6,38 @@ import java.util.TimeZone
 
 class DataProcessor {
     val raspored: Array<Array<String>> = arrayOf( // [dan][cas]
-        arrayOf("g", "g", "g", "g", "g", "Fizicko", "Srpski"),
-        arrayOf("Matematika I", "Srpski", "Sociologija", "Engleski", "Matematika", "Matematika"),
-        arrayOf("Srpski", "RS", "g", "g", "g", "g", "g"),
-        arrayOf("Matematika", "Fizicko", "Sociologija", "Matematika I", "Engleski", "Gradjansko"),
-        arrayOf("g", "g", "g", "g", "g", "g")
+        arrayOf("g", "g", "EP", "Matematika", "Matematika", "Srpski", "Pred A"),
+        arrayOf("g", "g", "g", "g", "g", "g", "g"),
+        arrayOf("EP", "RS", "g", "g", "Fizicko", "Engleski"),
+        arrayOf("Matematika", "g", "g", "g", "g", "g", "g"),
+        arrayOf("Srpski", "RMI", "Engleski", "Pred A / Verska", "Fizicko", "Pred B / Grad", "Pred B")
     )
 
     val grupe: Array<Array<Array<String>>> = arrayOf( // [dan][grupa][cas]
-        arrayOf(arrayOf("PiT", "PiT", "PiT", "BP", "BP", "", ""), arrayOf("BP", "BP", "RS", "RS", "PiT", "", ""), arrayOf("Programiranje", "Programiranje", "Programiranje", "WP", "WP", "", "")),
-        arrayOf(arrayOf("", "", "", "", "", "", ""), arrayOf("", "", "", "", "", "", ""), arrayOf("", "", "", "", "", "", "")),
-        arrayOf(arrayOf("", "", "RS", "RS", "Programiranje", "Programiranje", "Programiranje"), arrayOf("", "", "WP", "WP", "WP", "PiT", "PiT"), arrayOf("", "", "BP", "BP", "PiT", "PiT", "PiT")),
-        arrayOf(arrayOf("", "", "", "", "", "", ""), arrayOf("", "", "", "", "", "", ""), arrayOf("", "", "", "", "", "", "")),
-        arrayOf(arrayOf("WP", "WP", "WP", "PiT", "PiT", "PiT", ""), arrayOf("Programiranje", "Programiranje", "Programiranje", "PiT", "PiT", "PiT", ""), arrayOf("PiT", "PiT", "PiT", "WP", "RS", "RS", ""))
+        arrayOf(
+            arrayOf("PiT", "PiT", "", "", "", "", ""),
+            arrayOf("RMI", "RMI", "", "", "", "", ""),
+            arrayOf("PIT", "PIT", "", "", "", "", "")
+        ),
+        arrayOf(
+            arrayOf("Programiranje", "Programiranje", "Programiranje", "WP", "WP", "WP", ""),
+            arrayOf("WP", "WP", "WP", "PIT", "PIT", "ZIS", "ZIS"),
+            arrayOf("PIT", "PIT", "ZIS", "ZIS", "Programiranje", "Programiranje", "Programiranje")
+        ),
+        arrayOf(
+            arrayOf("", "", "PIT", "PIT", "", "", ""),
+            arrayOf("", "", "PIT", "PIT", "", "", ""),
+            arrayOf("", "", "RMI", "RMI", "", "", "")
+        ),
+        arrayOf(
+            arrayOf("", "RMI", "RMI", "PIT", "PIT", "ZIS", "ZIS"),
+            arrayOf("", "Programiranje", "Programiranje", "Programiranje", "PIT", "PIT", ""),
+            arrayOf("", "PIT", "PIT", "WP", "WP", "WP", "")),
+        arrayOf(
+            arrayOf("", "", "", "", "", "Gradjansko", ""),
+            arrayOf("", "", "", "Verska", "", "Preduzetnistvo", "Preduzetnistvo"),
+            arrayOf("", "", "", "", "", "", "")
+        )
     )
 
     val startTimeTable: Array<String> = arrayOf("08:00", "08:55", "10:00", "10:55", "11:50", "12:45", "13:35")
